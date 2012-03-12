@@ -1,4 +1,5 @@
 from django.db import models
+import collections
 
 serialize_me = []
 seen = {}
@@ -47,6 +48,9 @@ def serialize_fully():
 
 
 def add_to_serialize_list(objs):
+    if not isinstance(objs, collections.Iterable):
+        objs = [ objs ]
+
     for obj in objs:
         if obj is None:
             continue

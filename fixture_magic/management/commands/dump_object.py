@@ -1,3 +1,4 @@
+import sys
 from optparse import make_option
 
 from django.core.exceptions import FieldError, ObjectDoesNotExist
@@ -59,6 +60,8 @@ class Command(BaseCommand):
                 for rel in related_fields:
                     try:
                         add_to_serialize_list(obj.__getattribute__(rel).all())
+                    except AttributeError:
+                        add_to_serialize_list(obj.__getattribute__(rel))
                     except FieldError:
                         pass
                     except ObjectDoesNotExist:
