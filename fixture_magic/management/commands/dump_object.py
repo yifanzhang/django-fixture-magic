@@ -33,7 +33,7 @@ class Command(BaseCommand):
             #verify input is valid
             (app_label, model_name) = args[0].split('.')
             if options.get('file'):
-                ids = [int(line.strip()) for line in file(options.get('file'))]
+                ids = [line.strip() for line in file(options.get('file'))]
             else:
                 ids = args[1:]
             assert(ids)
